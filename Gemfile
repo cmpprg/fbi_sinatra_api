@@ -1,6 +1,7 @@
+source 'https://rubygems.org'
+
 gem 'sinatra', '>=2.0.8.1'
 gem 'faraday'
-gem 'figaro'
 
 group :development, :test do
   gem 'pry'
