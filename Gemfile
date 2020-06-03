@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'sinatra', '>=2.0.8.1'
 gem 'faraday'
+gem 'sinatra-contrib'
+gem 'fast_jsonapi'
 
 group :development, :test do
   gem 'pry'
