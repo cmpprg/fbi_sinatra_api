@@ -1,4 +1,4 @@
-require 'pry'
+require './poros/national_stats'
 require './poros/state_crimes_by_year'
 
 class StateStats
@@ -7,6 +7,7 @@ class StateStats
   def initialize(state)
     @state = state
     @collection ||= objects(state)
+    @national_stats = NationalStats.new
   end
 
   def arson_total
@@ -51,6 +52,32 @@ class StateStats
 
   def property_crime_percent_state
     percent = ((property_crime_total / total_crime.to_f) * 100)
+    percent.round(1)
+  end
+
+ #national .............
+  def arson_percent_national
+    percent = ((arson_total / @national_stats.arson_total.to_f) * 100)
+    percent.round(1)
+  end
+
+  def homicide_percent_national
+    percent = ((homicide_total / @national_stats.homicide_total.to_f) * 100)
+    percent.round(1)
+  end
+
+  def rape_percent_national
+    percent = ((rape_total / @national_stats.rape_total.to_f) * 100)
+    percent.round(1)
+  end
+
+  def aggravated_assault_percent_national
+    percent = ((aggravated_assault_total / @national_stats.aggravated_assault_total.to_f) * 100)
+    percent.round(1)
+  end
+
+  def property_crime_percent_national
+    percent = ((property_crime_total / @national_stats.property_crime_total.to_f) * 100)
     percent.round(1)
   end
 
