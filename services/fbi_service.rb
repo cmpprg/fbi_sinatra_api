@@ -1,6 +1,10 @@
 class FBIService
   def crimes_for(state)
-    hashed_json(state)[:results]
+    hashed_json(state_response(state))[:results]
+  end
+
+  def national_crimes
+    hashed_json(national_response)[:results]
   end
 
   private
@@ -19,8 +23,12 @@ class FBIService
     connect.get("api/estimates/states/#{state}/#{this_year - 10}/#{this_year}")
   end
 
-  def hashed_json(state)
-    JSON.parse(state_response(state).body, symbolize_names: true)
+  def national_response
+    connect.get("api/estimates/national/#{this_year - 10}/#{this_year}")
+  end
+
+  def hashed_json(response)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def this_year
