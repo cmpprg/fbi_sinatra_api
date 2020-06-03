@@ -13,6 +13,7 @@ class StateCrimesByYear
     @rape = crime_results[:rape_revised]
     @aggravated_assault = crime_results[:aggravated_assault]
     @property_crime = crime_results[:property_crime]
+    # we need total crimes attribute
   end
 
 end
