@@ -7,7 +7,7 @@ RSpec.describe 'FBI API V1' do
     expect(last_response).to be_successful
 
     json = JSON.parse(last_response.body, symbolize_names: true)
-    require 'pry'; binding.pry
+  
     expect(json[:data]).to be_instance_of(Hash)
     expect(json[:data][:attributes]).to_not be_empty
     expect(json[:data][:attributes]).to have_key(:rape_total)
@@ -15,17 +15,15 @@ RSpec.describe 'FBI API V1' do
     expect(json[:data][:attributes]).to have_key(:homicide_total)
     expect(json[:data][:attributes]).to have_key(:arson_total)
     expect(json[:data][:attributes]).to have_key(:aggravated_assault_total)
-
     expect(json[:data][:attributes]).to have_key(:rape_percent_state)
     expect(json[:data][:attributes]).to have_key(:property_crime_percent_state)
     expect(json[:data][:attributes]).to have_key(:homicide_percent_state)
     expect(json[:data][:attributes]).to have_key(:arson_percent_state)
     expect(json[:data][:attributes]).to have_key(:aggravated_assault_percent_state)
-    require 'pry'; binding.pry
-    # expect(json[:data][:attributes]).to have_key(:rape_percent_national)
-    # expect(json[:data][:attributes]).to have_key(:propercent_nationalty_crime_percent_national)
-    # expect(json[:data][:attributes]).to have_key(:homicide_percent_national)
-    # expect(json[:data][:attributes]).to have_key(:arson_percent_national)
-    # expect(json[:data][:attributes]).to have_key(:aggravated_assault_percent_national)
+    expect(json[:data][:attributes]).to have_key(:rape_percent_national)
+    expect(json[:data][:attributes]).to have_key(:property_crime_percent_national)
+    expect(json[:data][:attributes]).to have_key(:homicide_percent_national)
+    expect(json[:data][:attributes]).to have_key(:arson_percent_national)
+    expect(json[:data][:attributes]).to have_key(:aggravated_assault_percent_national)
   end
 end
