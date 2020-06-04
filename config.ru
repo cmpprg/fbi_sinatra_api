@@ -1,4 +1,6 @@
 require './fbi_app'
+require 'rack/cors'
+
 run Sinatra::Application
 
 use Rack::Cors do |config|
