@@ -1,18 +1,15 @@
-require 'sinatra'
-require 'faraday'
-require 'sinatra/json'
-require './serializers/state_stats_serializer'
-require './poros/state_stats'
-require './services/fbi_service'
+require './dependency'
 
 get '/' do
   'Hello world!'
 end
 
-get '/api/v1/crimes' do
-  key = ENV["FBI_KEY"]
-  state = params['state']
+get '/api/v1/crimes/states' do
+  state = StateStats.new(params['state'])
+  json StateStatsSerializer.new(state)
+end
 
-  crime_object = StateStats.new(state)
-  json StateStatsSerializer.new(crime_object)
+get '/api/v1/crimes/national' do
+  nation = NationalStats.new
+  json NationalStatsSerializer.new(nation)
 end
