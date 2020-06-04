@@ -29,28 +29,23 @@ class NationalStats
   end
 
   def rape_percent_of_total
-    percent = ((rape_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(rape_total, grand_total_crime)
   end
 
   def property_crime_percent_of_total
-    percent = ((property_crime_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(property_crime_total, grand_total_crime)
   end
 
   def homicide_percent_of_total
-    percent = ((homicide_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(homicide_total, grand_total_crime)
   end
 
   def arson_percent_of_total
-    percent = ((arson_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(arson_total, grand_total_crime)
   end
 
   def aggravated_assault_percent_of_total
-    percent = ((aggravated_assault_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(aggravated_assault_total, grand_total_crime)
   end
 
   private
@@ -76,6 +71,6 @@ class NationalStats
   end
 
   def grand_total_crime
-    @national_collection.sum { |crime_for_year| crime_for_year.total_crime }
+    Calculable.sum_of_attribute(@national_collection, 'total_crime')
   end
 end

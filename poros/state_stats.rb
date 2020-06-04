@@ -31,54 +31,43 @@ class StateStats
   end
 
   def arson_percent_state
-    percent = ((arson_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(arson_total, grand_total_crime)
   end
 
   def homicide_percent_state
-    percent = ((homicide_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(homicide_total, grand_total_crime)
   end
 
   def rape_percent_state
-    percent = ((rape_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(rape_total, grand_total_crime)
   end
 
   def aggravated_assault_percent_state
-    percent = ((aggravated_assault_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(aggravated_assault_total, grand_total_crime)
   end
 
   def property_crime_percent_state
-    percent = ((property_crime_total / grand_total_crime.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(property_crime_total, grand_total_crime)
   end
 
- #national .............
   def arson_percent_national
-    percent = ((arson_total / @national_stats.arson_total.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(arson_total, @national_stats.arson_total)
   end
 
   def homicide_percent_national
-    percent = ((homicide_total / @national_stats.homicide_total.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(homicide_total, @national_stats.homicide_total)
   end
 
   def rape_percent_national
-    percent = ((rape_total / @national_stats.rape_total.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(rape_total, @national_stats.rape_total)
   end
 
   def aggravated_assault_percent_national
-    percent = ((aggravated_assault_total / @national_stats.aggravated_assault_total.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(aggravated_assault_total, @national_stats.aggravated_assault_total)
   end
 
   def property_crime_percent_national
-    percent = ((property_crime_total / @national_stats.property_crime_total.to_f) * 100)
-    percent.round(1)
+    Calculable.percent(property_crime_total, @national_stats.property_crime_total)
   end
 
   private
@@ -104,6 +93,6 @@ class StateStats
   end
 
   def grand_total_crime
-    @state_collection.sum { |crime_for_year| crime_for_year.total_crime }
+    Calculable.sum_of_attribute(@state_collection, 'total_crime')
   end
 end
