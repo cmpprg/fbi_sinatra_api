@@ -4,6 +4,7 @@ require 'rack/cors'
 run Sinatra::Application
 
 use Rack::Cors do |config|
+  
   config.allow do |allow|
     allow.origins '*'
     allow.resource '/file/list_all/', :headers => :any
