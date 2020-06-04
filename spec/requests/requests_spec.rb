@@ -35,7 +35,6 @@ RSpec.describe 'FBI API V1' do
 
     json = JSON.parse(last_response.body, symbolize_names: true)
 
-    require 'pry'; binding.pry
     expect(json[:data]).to be_instance_of(Hash)
     expect(json[:data][:id]).to eql('US')
     expect(json[:data][:attributes]).to_not be_empty
@@ -50,6 +49,5 @@ RSpec.describe 'FBI API V1' do
     expect(json[:data][:attributes]).to have_key(:homicide_percent_of_total)
     expect(json[:data][:attributes]).to have_key(:arson_percent_of_total)
     expect(json[:data][:attributes]).to have_key(:aggravated_assault_percent_of_total)
-
   end
 end
