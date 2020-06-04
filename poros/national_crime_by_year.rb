@@ -10,10 +10,23 @@ class NationalCrimesByYear
     @homicide = crime_info[:homicide]
     @aggravated_assault = crime_info[:aggravated_assault]
     @property_crime = crime_info[:property_crime]
+    @rape_revised = crime_info[:rape_revised]
+    @rape_legacy = crime_info[:rape_legacy]
   end
 
   def rape
-    return @crime_info[:rape_revised] unless @crime_info[:rape_revised].nil?
-    @crime_info[:rape_legacy]
+    return @rape_revised unless @rape_revised.nil?
+    @rape_legacy
+  end
+
+  def total_crime
+    modified_hash = @crime_info
+    modified_hash.delete_if { |key, value| keys_to_delete.include?(key) }
+    modified_hash[:rape] = rape
+    modified_hash.values.sum
+  end
+
+  def keys_to_delete
+    [:state_id, :year,:state_abbr, :population, :rape_legacy, :rape_revised]
   end
 end
