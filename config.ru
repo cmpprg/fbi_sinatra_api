@@ -1,7 +1,6 @@
 require './fbi_app'
 require 'rack/cors'
 
-require ::File.expand_path('../fbi_app.rb',  __FILE__)
 run Sinatra::Application
 
 use Rack::Cors do |config|

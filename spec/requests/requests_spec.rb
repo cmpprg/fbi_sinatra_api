@@ -34,7 +34,6 @@ RSpec.describe 'FBI API V1' do
     expect(last_response).to be_successful
 
     json = JSON.parse(last_response.body, symbolize_names: true)
-
     expect(json[:data]).to be_instance_of(Hash)
     expect(json[:data][:id]).to eql('US')
     expect(json[:data][:attributes]).to_not be_empty
