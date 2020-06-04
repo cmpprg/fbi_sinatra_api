@@ -6,28 +6,28 @@ class StateStats
 
   def initialize(state)
     @state = state
-    @collection ||= objects(state)
+    @state_collection ||= objects(state)
     @national_stats = NationalStats.new
   end
 
   def arson_total
-    @collection.sum { |crime_for_year| crime_for_year.arson }
+    Calculable.sum_of_attribute(@state_collection, 'arson')
   end
 
   def homicide_total
-    @collection.sum { |crime_for_year| crime_for_year.homicide }
+    Calculable.sum_of_attribute(@state_collection, 'homicide')
   end
 
   def rape_total
-    @collection.sum { |crime_for_year| crime_for_year.rape }
+    Calculable.sum_of_attribute(@state_collection, 'rape')
   end
 
   def aggravated_assault_total
-    @collection.sum { |crime_for_year| crime_for_year.aggravated_assault }
+    Calculable.sum_of_attribute(@state_collection, 'aggravated_assault')
   end
 
   def property_crime_total
-    @collection.sum { |crime_for_year| crime_for_year.property_crime }
+    Calculable.sum_of_attribute(@state_collection, 'property_crime')
   end
 
   def arson_percent_state
@@ -104,6 +104,6 @@ class StateStats
   end
 
   def grand_total_crime
-    @collection.sum { |crime_for_year| crime_for_year.total_crime }
+    @state_collection.sum { |crime_for_year| crime_for_year.total_crime }
   end
 end

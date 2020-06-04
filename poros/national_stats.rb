@@ -1,29 +1,31 @@
 require './services/fbi_service'
 require './poros/national_crime_by_year'
+require './modules/calculable'
 
 class NationalStats
+  include Calculable
   def initialize
-    @collection = objects
+    @national_collection = objects
   end
 
   def arson_total
-    @collection.sum { |crime_for_year| crime_for_year.arson }
+    Calculable.sum_of_attribute(@national_collection, 'arson')
   end
 
   def homicide_total
-    @collection.sum { |crime_for_year| crime_for_year.homicide }
+    Calculable.sum_of_attribute(@national_collection, 'homicide')
   end
 
   def rape_total
-    @collection.sum { |crime_for_year| crime_for_year.rape }
+    Calculable.sum_of_attribute(@national_collection, 'rape')
   end
 
   def aggravated_assault_total
-    @collection.sum { |crime_for_year| crime_for_year.aggravated_assault }
+    Calculable.sum_of_attribute(@national_collection, 'aggravated_assault')
   end
 
   def property_crime_total
-    @collection.sum { |crime_for_year| crime_for_year.property_crime }
+    Calculable.sum_of_attribute(@national_collection, 'property_crime')
   end
 
   def rape_percent_of_total
@@ -74,6 +76,6 @@ class NationalStats
   end
 
   def grand_total_crime
-    @collection.sum { |crime_for_year| crime_for_year.total_crime }
+    @national_collection.sum { |crime_for_year| crime_for_year.total_crime }
   end
 end
