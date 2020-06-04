@@ -57,17 +57,11 @@ class NationalStats
   end
 
   def last_ten_years
-    api_results.find_all do |result|
-      ((this_year - 10)..this_year).include?(result[:year])
-    end
+    Calculable.last_ten_years(api_results, :year)
   end
 
   def api_results
     FBIService.new.national_crimes
-  end
-
-  def this_year
-    Time.now.year
   end
 
   def grand_total_crime

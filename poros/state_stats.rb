@@ -79,17 +79,11 @@ class StateStats
   end
 
   def last_ten_years(state)
-    api_results(state).find_all do |result|
-      ((this_year - 10)..this_year).include?(result[:year])
-    end
+    Calculable.last_ten_years(api_results(state), :year)
   end
 
   def api_results(state)
     FBIService.new.crimes_for(state)
-  end
-
-  def this_year
-    Time.now.year
   end
 
   def grand_total_crime

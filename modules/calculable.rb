@@ -9,4 +9,13 @@ module Calculable
     percent.round(1)
   end
 
+  def self.last_ten_years(collection, attribute)
+    collection.find_all do |object|
+      ((this_year - 10)..this_year).include?(object[attribute])
+    end
+  end
+
+  def self.this_year
+    Time.now.year
+  end
 end
